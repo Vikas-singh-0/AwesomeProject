@@ -4,7 +4,7 @@ import React from 'react'
 const home = () => {
   return (
     <View>
-      <Text>home</Text>
+      <Text className = "w-auto font-semibold bg-slate-500 flex h-20">home</Text>
     </View>
   )
 }
