@@ -1,10 +1,11 @@
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Alert, Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import images from "../../constants/images";
 import FormField from "../../components/FormField";
 import CustomButton from "../../components/CustomButton";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
+import { getCurrentUser, signIn } from "../../lib/appwrite";
 const SignIn = () => {
   const [form, setForm] = useState({
     email: "",
@@ -13,8 +14,22 @@ const SignIn = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const submitForm = () => {
+  const submitForm = async () => {
+    const res = await getCurrentUser();
+    if (!form.email || !form.password) {
+      Alert.alert("Error", "Please fill all the fields");
+      return;
+    }
     setIsSubmitting(true);
+    try {
+      const user = await signIn(form.email, form.password);
+      // global state management
+      router.replace("/home");
+    } catch (error) {
+      Alert.alert("Error", error.message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   return (
     <SafeAreaView className="bg-primary h-full">
@@ -54,9 +69,16 @@ const SignIn = () => {
             handlePress={submitForm}
             isLoading={isSubmitting}
           />
-          <View className='text-white pt-5 justify-center items-center gap-2 flex-row'>
-            <Text className = 'text-lg text-green-100 font-pregular'>Don't have an account? </Text>
-            <Link className = 'text-lg text-secondary-200 font-semibold' href='/sign-up'>Sign Up</Link>
+          <View className="text-white pt-5 justify-center items-center gap-2 flex-row">
+            <Text className="text-lg text-green-100 font-pregular">
+              Don't have an account?{" "}
+            </Text>
+            <Link
+              className="text-lg text-secondary-200 font-semibold"
+              href="/sign-up"
+            >
+              Sign Up
+            </Link>
           </View>
         </View>
       </ScrollView>
