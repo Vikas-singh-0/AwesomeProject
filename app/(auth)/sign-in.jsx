@@ -15,7 +15,7 @@ const SignIn = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const submitForm = async () => {
-    const res = await getCurrentUser();
+    // const res = await getCurrentUser();
     if (!form.email || !form.password) {
       Alert.alert("Error", "Please fill all the fields");
       return;
@@ -24,7 +24,8 @@ const SignIn = () => {
     try {
       const user = await signIn(form.email, form.password);
       // global state management
-      router.replace("/home");
+      console.log('-------------------------------', user);
+      return router.replace("/home");
     } catch (error) {
       Alert.alert("Error", error.message);
     } finally {
