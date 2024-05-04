@@ -1,6 +1,7 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import icons from "../constants/icons";
+import { ResizeMode, Video } from "expo-av";
 
 const VideoCard = ({
   video: {
@@ -32,12 +33,37 @@ const VideoCard = ({
           <Image source={icons.menu} resizeMode="contain" className="w-5 h-5" />
         </View>
       </View>
-      {
-        play ? (<Text className ="text-white">Playing</Text>) : <TouchableOpacity activeOpacity={0.7} onPress={() => setPlay(true)} className = "h-60 w-full rounded-xl mt-3 relative justify-center items-center">
-          <Image source={{uri : thumbnail}} className="w-full h-full" resizeMode="contain"/>
-          <Image source={icons.play} className ="absolute h-12 w-12" resizeMode="contain"/>
-        </TouchableOpacity>   
-      }
+      {play ? (
+        <Video
+          source={{ uri: video }}
+          resizeMode={ResizeMode.CONTAIN}
+          className="w-full h-60 rounded-[35px] mt-3 bg-white/10"
+          useNativeControls
+          shouldPlay
+          onPlaybackStatusUpdate={(status) => {
+            if (status.didJustFinish) {
+              setPlay(false);
+            }
+          }}
+        />
+      ) : (
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={() => setPlay(true)}
+          className="h-60 w-full rounded-xl mt-3 relative justify-center items-center"
+        >
+          <Image
+            source={{ uri: thumbnail }}
+            className="w-full h-full"
+            resizeMode="contain"
+          />
+          <Image
+            source={icons.play}
+            className="absolute h-12 w-12"
+            resizeMode="contain"
+          />
+        </TouchableOpacity>
+      )}
     </View>
   );
 };

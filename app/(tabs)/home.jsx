@@ -13,15 +13,17 @@ import images from "../../constants/images";
 import SearchBox from "../../components/SearchBox";
 import Trending from "../../components/Trending";
 import EmptyState from "../../components/EmptyState";
-import { getAllPosts } from "../../lib/appwrite";
+import { getAllPosts, getLatestPosts } from "../../lib/appwrite";
 import useAppWrite from "../../lib/useAppWrite";
 import VideoCard from "../../components/VideoCard";
 
 const home = () => {
 
   const { data: posts, refetch, isLoading } = useAppWrite(getAllPosts);
+  const { data: latestPosts } = useAppWrite(getAllPosts);
 
   const [isRefreshing, setIsRefreshing] = useState(false);
+
   const handleRefresh = async () => {
     setIsRefreshing(true);
     await refetch();
@@ -62,12 +64,7 @@ const home = () => {
                 </Text>
               </View>
               <Trending
-                posts={[
-                  { id: 1 },
-                  { id: 2, name: "vika" },
-                  { id: 3 },
-                  { id: 4, name: "vika" },
-                ]}
+                posts={latestPosts}
               />
             </View>
           );
