@@ -18,7 +18,6 @@ import useAppWrite from "../../lib/useAppWrite";
 import VideoCard from "../../components/VideoCard";
 
 const home = () => {
-
   const { data: posts, refetch, isLoading } = useAppWrite(getAllPosts);
   const { data: latestPosts } = useAppWrite(getAllPosts);
 
@@ -34,8 +33,8 @@ const home = () => {
       <FlatList
         data={posts}
         keyExtractor={(item) => item.$id}
-        renderItem={({item}) => {
-          return <VideoCard video = {item}/>;
+        renderItem={({ item }) => {
+          return <VideoCard video={item} />;
         }}
         ListHeaderComponent={() => {
           return (
@@ -62,10 +61,8 @@ const home = () => {
                 <Text className="text-green-50 text-lg font-pregular mb-3">
                   Latest Videos
                 </Text>
+                <Trending posts={latestPosts} />
               </View>
-              <Trending
-                posts={latestPosts}
-              />
             </View>
           );
         }}

@@ -15,15 +15,21 @@ const SignUp = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const submitForm = async() => {
-    if (!form.username || !form.email || !form.password) Alert.alert('Error', 'Please fill all the fields');
+  const submitForm = async () => {
+    if (!form.username || !form.email || !form.password)
+      Alert.alert("Error", "Please fill all the fields");
     setIsSubmitting(true);
     try {
       const user = await createUser(form.username, form.email, form.password);
+      const result = await getCurrentUser();
+
+      setUser(result);
+      setIsLoggedIn(true);
+      
       // global state management
-      router.replace('/home')
+      router.replace("/home");
     } catch (error) {
-      Alert.alert('Error', error.message);
+      Alert.alert("Error", error.message);
     } finally {
       setIsSubmitting(false);
     }
@@ -75,9 +81,16 @@ const SignUp = () => {
             handlePress={submitForm}
             isLoading={isSubmitting}
           />
-          <View className='text-white pt-5 justify-center items-center gap-2 flex-row'>
-            <Text className = 'text-lg text-green-100 font-pregular'>Already have an account? </Text>
-            <Link className = 'text-lg text-secondary-200 font-semibold' href='/sign-in'>Sign In</Link>
+          <View className="text-white pt-5 justify-center items-center gap-2 flex-row">
+            <Text className="text-lg text-green-100 font-pregular">
+              Already have an account?{" "}
+            </Text>
+            <Link
+              className="text-lg text-secondary-200 font-semibold"
+              href="/sign-in"
+            >
+              Sign In
+            </Link>
           </View>
         </View>
       </ScrollView>
