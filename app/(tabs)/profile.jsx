@@ -1,11 +1,14 @@
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
 import React, { useEffect } from "react";
 import { Redirect, router, useLocalSearchParams } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { getUserPosts, searchPosts, signIn } from "../../lib/appwrite";
+import { getUserPosts, searchPosts, signIn, signOut } from "../../lib/appwrite";
 import SearchBox from "../../components/SearchBox";
 import { useGlobalContext } from "../../context/GlobalProvider";
 import icons from "../../constants/icons";
+import useAppWrite from "../../lib/useAppWrite";
+import VideoCard from "../../components/VideoCard";
+import EmptyState from "../../components/EmptyState";
 
 const Profile = () => {
   const { setIsLoggedIn, user, setUser } = useGlobalContext();

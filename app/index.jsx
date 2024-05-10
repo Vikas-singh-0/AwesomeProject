@@ -56,6 +56,11 @@ export default function App() {
             containerStyles="w-full mt-7"
             handlePress={() => {router.push('/sign-in')}}
           />
+          <CustomButton
+            title="Home!"
+            containerStyles="w-full mt-7"
+            handlePress={() => {router.push('/home')}}
+          />
         </View>
       </ScrollView>
       <StatusBar backgroundColor="white" style="light"/>
