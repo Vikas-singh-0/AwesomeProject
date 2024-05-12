@@ -45,7 +45,7 @@ const home = () => {
                     Welcome Back
                   </Text>
                   <Text className="text-2xl font-pmedium text-white">
-                    Js Mastery
+                    User
                   </Text>
                 </View>
                 <View className=" mt-1.5">

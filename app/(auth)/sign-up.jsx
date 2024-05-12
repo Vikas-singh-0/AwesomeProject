@@ -45,7 +45,7 @@ const SignUp = () => {
           />
           <Text className="text-2xl text-white text-semibold mt-10 font-psemibold mb-10 min-w-[80%]">
             {" "}
-            Sign Up on Aura{" "}
+            Sign Up on Artified{" "}
           </Text>
           <FormField
             title="Username"

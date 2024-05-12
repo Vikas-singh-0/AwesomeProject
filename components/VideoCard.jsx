@@ -8,16 +8,16 @@ const VideoCard = ({
     title,
     thumbnail,
     video,
-    users: { username, avatar },
+    users,
   },
 }) => {
-  console.log(thumbnail);
+  // console.log(props);
   const [play, setPlay] = useState(false);
   return (
-    <View className="flex-col items-center px-4 mb-4 border-rose-500 border-2">
-      <View className="flex-row items-center px-4 p-0.5 mb-14 border-rose-500 border-2 w-full">
+    <View className="flex-col items-center px-4 mb-4  border-2">
+      <View className="flex-row items-center px-4 p-0.5 mb-14  border-2 w-full">
         <Image
-          source={{ uri: avatar }}
+          source={{ uri: 'https://gravatar.com/avatar/d9f4bc8b5b8fef0d2dfc451de2e7397e?s=400&d=robohash&r=x' }}
           className="h-[50px] w-[50px] bg-slate-50 rounded-lg"
         />
         <View className="ml-3 justify-center flex-1 gap-y-1">
@@ -27,7 +27,7 @@ const VideoCard = ({
           >
             {title}
           </Text>
-          <Text className="text-xs text-white">{username}</Text>
+          <Text className="text-xs text-white">{"username"}</Text>
         </View>
         <View>
           <Image source={icons.menu} resizeMode="contain" className="w-5 h-5" />

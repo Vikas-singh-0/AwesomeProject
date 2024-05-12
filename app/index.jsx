@@ -9,13 +9,11 @@ import { getCurrentUser } from "../lib/appwrite";
 
 const check = async () => {
   const user = await getCurrentUser();
-  console.log('--------------------------------------------',user);
 }
 
 export default function App() {
   
   const { isLoggedIn, isLoading } = useGlobalContext();
-  console.log(isLoading, isLoggedIn);
   if (!isLoading && isLoggedIn) return <Redirect href='/home' />
   check();
   return (

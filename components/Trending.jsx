@@ -1,4 +1,4 @@
-import { View, Text, FlatList, ImageBackground } from "react-native";
+import { View, Text, FlatList, ImageBackground, Image } from "react-native";
 import React, { useState } from "react";
 import * as Animatable from "react-native-animatable";
 import { TouchableOpacity } from "react-native-web";
@@ -24,10 +24,10 @@ const TrendingItem = ({ activeItem, item }) => {
   };
   const [play, setPlay] = useState(false);
   return (
-    <Animatable.View
+    <View
       className="mr-5"
-      animation={activeItem === item.$id ? zoomIn : zoomOut}
-      duration={500}
+      // animation={activeItem === item.$id ? zoomIn : zoomOut}
+      // duration={500}
     >
       {play ? (
         <Video
@@ -62,7 +62,7 @@ const TrendingItem = ({ activeItem, item }) => {
           />
         </TouchableOpacity>
       )}
-    </Animatable.View>
+    </View>
   );
 };
 
@@ -79,15 +79,15 @@ const Trending = ({ posts }) => {
     <FlatList
       data={posts}
       keyExtractor={(item) => item.$id}
-      renderItem={({ item }) => (
-        <TrendingItem
-          className="text-3xl text-white"
-          activeItem={activeItem}
-          item={item}
-        >
-          {item.id}
-        </TrendingItem>
-      )}
+      // renderItem={({ item }) => (
+      //   <TrendingItem
+      //     className="text-3xl text-white"
+      //     activeItem={activeItem}
+      //     item={item}
+      //   >
+      //     {item.id}
+      //   </TrendingItem>
+      // )}
       onViewableItemsChanged={viewableItemChanges}
       viewabilityConfig={{
         itemVisiblePercentThreshold: 70,

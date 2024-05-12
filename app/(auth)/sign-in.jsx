@@ -26,10 +26,10 @@ const SignIn = () => {
     }
     setIsSubmitting(true);
     try {
-      const user = await signIn(form.email, form.password);
-      const result = await getCurrentUser();
+      // const user = await signIn(form.email, form.password);
+      // const result = await getCurrentUser();
 
-      setUser(result);
+      // setUser(result);
       setIsLoggedIn(true);
       // global state management
 
@@ -38,7 +38,7 @@ const SignIn = () => {
     } catch (error) {
       Alert.alert("Error", error.message);
     } finally {
-      setIsSubmitting(false);
+      // setIsSubmitting(false);
     }
   };
   return (
@@ -52,7 +52,7 @@ const SignIn = () => {
           />
           <Text className="text-2xl text-white text-semibold mt-10 font-psemibold mb-10 min-w-[80%]">
             {" "}
-            Login to Aura{" "}
+            Login to Artified{" "}
           </Text>
           <FormField
             title="Email"
